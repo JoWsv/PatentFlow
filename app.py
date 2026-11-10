@@ -31,6 +31,7 @@ def inject_csrf():
     return {'csrf_token':session['csrf']}
 
 @app.before_request
+
 def check_csrf():
     if request.method in ('POST', 'PUT', 'PATCH', 'DELETE'):
         token_sessao = session.get('csrf')
@@ -155,6 +156,7 @@ def bad_request(error):return render_template('error.html',message='Não foi pos
 @app.errorhandler(404)
 def not_found(error):return render_template('error.html',message='Página ou registro não encontrado.'),404
 
-if __name__=='__main__':
-    init_db()
+init_db()
+
+if __name__ == '__main__':
     app.run(debug=False)
