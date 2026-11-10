@@ -1,1 +1,96 @@
 *{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:#14243b;background:#f5f8fc}a{color:#1157aa}button,input,select{font:inherit}button,.btn{min-height:44px;padding:10px 18px;border:1px solid #125ac0;border-radius:8px;background:#125ac0;color:white;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:650}.btn.secondary,button.secondary{background:white;color:#125ac0}.btn.small,button.small{padding:7px 11px;min-height:44px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ef9b15;outline-offset:3px}header{background:#102f57;color:white}header .inner{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:12px}header a{color:white;text-decoration:none}header strong{font-size:24px}.nav{display:flex;align-items:center;gap:20px}.nav button{background:transparent;border:1px solid #a4c7ec}main{max-width:1150px;margin:34px auto;padding:0 24px}h1{font-size:30px;margin:0 0 6px}h2{font-size:22px;margin:0 0 15px}.muted{color:#53657b}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:24px}.panel{background:white;border:1px solid #d7e0ed;border-radius:12px;padding:24px;margin:20px 0;box-shadow:0 2px 8px #102f5709}.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:170px}.field label{font-weight:650}input,select{min-height:44px;padding:9px 11px;border:1px solid #8295b0;border-radius:7px;background:white;color:#17273f;width:100%}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:670px}th{background:#e4effc;text-align:left;padding:14px 12px}td{padding:13px 12px;border-bottom:1px solid #dbe5f0}tr:last-child td{border-bottom:0}.pill{display:inline-block;background:#e6f1ff;color:#144c86;border-radius:6px;padding:5px 9px;font-weight:650}.pill.done{background:#d9f4df;color:#15582c}.pill.wait{background:#fff0d6;color:#714508}.flash{padding:12px 16px;border-radius:8px;margin:12px 0;background:#e5f6e9;border-left:5px solid #238449}.flash.erro{background:#fff0ee;border-color:#c22d2d}.next{border-left:6px solid #125ac0;background:#eaf3ff;padding:18px;border-radius:8px}.detailgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.detailgrid dt{color:#52647b;font-size:14px}.detailgrid dd{font-weight:650;margin:0}.login{max-width:430px;margin:75px auto}.overdue{color:#9b2424;font-weight:650}.hint{font-size:14px;color:#53657b}@media(max-width:680px){header .inner{flex-wrap:wrap}.formgrid,.detailgrid{grid-template-columns:1fr}main{margin:20px auto;padding:0 14px}.panel{padding:16px}.top{align-items:flex-start}h1{font-size:25px}}
+
+/* Acessibilidade: modo de alto contraste */
+
+body.alto-contraste {
+    background: #000;
+    color: #fff;
+}
+
+.alto-contraste header {
+    background: #000;
+    border-bottom: 2px solid #ffff00;
+}
+
+.alto-contraste header a,
+.alto-contraste header span,
+.alto-contraste h1,
+.alto-contraste h2,
+.alto-contraste label,
+.alto-contraste dt,
+.alto-contraste dd {
+    color: #fff;
+}
+
+.alto-contraste .panel {
+    background: #000;
+    color: #fff;
+    border: 2px solid #ffff00;
+    box-shadow: none;
+}
+
+.alto-contraste .muted,
+.alto-contraste .hint,
+.alto-contraste .detailgrid dt {
+    color: #fff;
+}
+
+.alto-contraste a {
+    color: #ffff00;
+}
+
+.alto-contraste input,
+.alto-contraste select {
+    background: #000;
+    color: #fff;
+    border: 2px solid #ffff00;
+}
+
+.alto-contraste button,
+.alto-contraste .btn {
+    background: #ffff00;
+    color: #000;
+    border: 2px solid #ffff00;
+}
+
+.alto-contraste header button {
+    background: #000;
+    color: #ffff00;
+}
+
+.alto-contraste th {
+    background: #222;
+    color: #ffff00;
+}
+
+.alto-contraste td {
+    border-bottom: 1px solid #ffff00;
+}
+
+.alto-contraste .pill,
+.alto-contraste .pill.done,
+.alto-contraste .pill.wait {
+    background: #ffff00;
+    color: #000;
+}
+
+.alto-contraste .next,
+.alto-contraste .flash,
+.alto-contraste .flash.erro {
+    background: #222;
+    color: #fff;
+    border-left: 5px solid #ffff00;
+}
+
+.alto-contraste .overdue {
+    color: #ffff00;
+}
+
+.alto-contraste a:focus-visible,
+.alto-contraste button:focus-visible,
+.alto-contraste input:focus-visible,
+.alto-contraste select:focus-visible {
+    outline: 3px solid #00ffff;
+    outline-offset: 3px;
+}
+
