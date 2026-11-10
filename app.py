@@ -32,9 +32,15 @@ def inject_csrf():
 
 @app.before_request
 def check_csrf():
-    if request.method in ('POST','PUT','PATCH','DELETE'):
-        if not secrets.compare_digest(session.get('csrf',''),request.form.get('csrf_token','')):
-            abort(400, description='Formulário expirado. Atualize a página e tente novamente.')
+    if request.method in ('POST', 'PUT', 'PATCH', 'DELETE'):
+        token_sessao = session.get('csrf')
+        token_formulario = request.form.get('csrf_token')
+
+        if not token_sessao or not token_formulario:
+            abort(400, description='Token CSRF ausente.')
+
+        if not secrets.compare_digest(token_sessao, token_formulario):
+            abort(400, description='Token CSRF inválido.')
 
 @app.after_request
 def security_headers(response):
