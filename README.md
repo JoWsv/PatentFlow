@@ -1,4 +1,6 @@
+
 # PatentFlow — MVP acadêmico
+
 ## Sobre o projeto
 
 O PatentFlow é uma aplicação web desenvolvida para organizar e acompanhar processos de patentes. O sistema facilita o cadastro de informações, o controle das etapas e a identificação de atividades pendentes.

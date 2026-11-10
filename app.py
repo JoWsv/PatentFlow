@@ -1,4 +1,4 @@
-import os, sqlite3, secrets
+import os, sqlite3, secrets, math
 from datetime import date, timedelta
 from functools import wraps
 from pathlib import Path
@@ -108,8 +108,12 @@ def form_patente(pid=None):
     if request.method=='POST':
         f=request.form
         numero=f.get('numero_processo','').strip()[:60];inventor=f.get('inventor','').strip()[:120];instituto=f.get('instituto','').strip()[:120];dt=f.get('data_registro','');status=f.get('status','');raw=f.get('custos','0').replace(',','.')
-        try: custos=float(raw)
-        except ValueError: custos=-1
+        try:
+         custos = float(raw)
+         if not math.isfinite(custos):
+             custos = -1
+        except (ValueError, OverflowError):
+            custos = -1
         if not numero or not inventor or not instituto or not valid_date(dt) or status not in STATUSES or custos<0:
             flash('Confira os campos obrigatórios, a data e o valor dos custos.','erro')
         else:

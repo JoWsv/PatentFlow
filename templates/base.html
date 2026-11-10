@@ -1,1 +1,54 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}PatentFlow{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head><body><header><div class="inner"><a href="{{ url_for('index') }}"><strong>▱ PatentFlow</strong></a>{% if session.get('user') %}<nav class="nav" aria-label="Navegação principal"><a href="{{ url_for('index') }}">Início / Patentes</a><span>{{ session['user'] }}</span><form method="post" action="{{ url_for('sair') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit">Sair</button></form></nav>{% endif %}</div></header><main>{% with msgs=get_flashed_messages(with_categories=true) %}{% for cat,msg in msgs %}<div role="alert" class="flash {{cat}}">{{ msg }}</div>{% endfor %}{% endwith %}{% block content %}{% endblock %}</main></body></html>
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}PatentFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="inner">
+            <a href="{{ url_for('index') }}">
+                <strong>▱ PatentFlow</strong>
+            </a>
+
+            <button
+                type="button"
+                id="botao-contraste"
+                aria-pressed="false"
+                aria-label="Ativar alto contraste">
+                Alto contraste
+            </button>
+
+            {% if session.get('user') %}
+            <nav class="nav" aria-label="Navegação principal">
+                <a href="{{ url_for('index') }}">Início / Patentes</a>
+                <span>{{ session['user'] }}</span>
+
+                <form method="post" action="{{ url_for('sair') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button type="submit">Sair</button>
+                </form>
+            </nav>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% for cat, msg in msgs %}
+                <div role="alert" class="flash {{ cat }}">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+<script src="{{ url_for('static', filename='contraste.js') }}" defer></script>
+</body>
+</html>
