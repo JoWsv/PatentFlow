@@ -1,26 +1,56 @@
 # PatentFlow — MVP acadêmico
+## Sobre o projeto
 
-Aplicação web em português para cadastro e acompanhamento de processos de patentes, com dados fictícios.
+O PatentFlow é uma aplicação web desenvolvida para organizar e acompanhar processos de patentes. O sistema facilita o cadastro de informações, o controle das etapas e a identificação de atividades pendentes.
+
+O projeto foi desenvolvido como parte da Experiência Prática do curso de Análise e Desenvolvimento de Sistemas.
+
+## Tecnologias utilizadas
+
+- Python e Flask
+- SQLite
+- HTML e CSS
+- Git e GitHub
+
+## Funcionalidades
+
+- Login do administrador
+- Cadastro de patentes
+- Consulta e pesquisa de processos
+- Edição das informações cadastradas
+- Registro de etapas e prazos
+- Identificação da próxima atividade pendente
+
+## Telas do sistema
+
+1. **Visão geral:** apresenta os processos cadastrados e permite iniciar um novo cadastro.
+2. **Cadastro:** permite registrar informações de uma patente.
+3. **Detalhes:** apresenta as informações, etapas, prazos e atividades pendentes.
 
 ## Executar localmente
 
-1. Instale Python 3.12.
-2. Na pasta do projeto, crie o ambiente: `python -m venv .venv`.
-3. Ative-o: Windows `.venv\Scripts\activate`; macOS/Linux `source .venv/bin/activate`.
-4. Instale: `pip install -r requirements.txt`.
-5. Defina uma `SECRET_KEY` aleatória e persistente no ambiente antes de executar em produção. Exemplo de geração: `python -c "import secrets; print(secrets.token_hex(32))"`.
-6. Crie a conta: `python create_admin.py`.
-7. Execute: `python app.py` e acesse `http://127.0.0.1:5000`.
+1. Instale uma versão do Python compatível com as dependências.
+2. Crie um ambiente virtual: `python -m venv .venv`.
+3. Ative o ambiente:
+   - Windows: `.venv\Scripts\activate`
+   - macOS/Linux: `source .venv/bin/activate`
+4. Instale as dependências: `pip install -r requirements.txt`.
+5. Crie uma conta de administrador: `python create_admin.py`.
+6. Execute: `python -m flask --app app run`.
+7. Acesse `http://127.0.0.1:5000`.
 
-O banco é criado em `instance/patentflow.sqlite3` e não deve ser publicado no GitHub. A aplicação usa SQLite e foi pensada para demonstração local com poucos usuários. Para hospedagem, é necessário serviço com suporte a Python, HTTPS, variável `SECRET_KEY`, `COOKIE_SECURE=1` e armazenamento persistente. GitHub Pages **não executa Flask**.
+## Segurança
 
-## Segurança e limites
+O sistema utiliza autenticação, hash de senhas, proteção CSRF e validação de entradas.
 
-Login com hash scrypt, CSRF em formulários, SQL parametrizado, escape padrão Jinja2, cabeçalhos de segurança, cookies HttpOnly e SameSite. A limitação de tentativas de login, sessões revogáveis no servidor e testes automatizados ainda precisam ser implementados antes de uma implantação pública. Não insira informações reais ou confidenciais.
+O banco de dados `instance/patentflow.sqlite3`, as senhas e as chaves secretas não devem ser publicados no GitHub.
 
-## Fluxo
+O MVP utiliza dados fictícios e está destinado inicialmente à demonstração local. Antes de uma implantação pública, será necessário configurar HTTPS, uma SECRET_KEY persistente, cookies seguros, armazenamento persistente, limitação de tentativas de login e testes de segurança.
 
-1. Entrar com conta de demonstração criada localmente.
-2. Cadastrar uma patente.
-3. Abrir os detalhes e adicionar etapas.
-4. A próxima atividade é a etapa não concluída com o prazo mais próximo.
+## Qualidade de software
+
+O desenvolvimento utiliza Git e GitHub para controle de versão. Os testes automatizados, a integração contínua e as revisões por Pull Request serão documentados conforme sua implementação.
+
+## Objetivo
+
+Contribuir para a organização dos processos de patentes, facilitando o acompanhamento das atividades e dos prazos.
