@@ -108,5 +108,32 @@ class TestPatentFlow(unittest.TestCase):
 
 
 
+
+    def test_cadastro_custos_invalidos(self):
+        self.fazer_login()
+        token = self.token_csrf()
+
+        for valor in ["NaN", "Infinity", "-10"]:
+            with self.subTest(custos=valor):
+                resposta = self.client.post("/patentes/nova", data={
+                    "numero_processo": "TESTE-INVALIDO",
+                    "inventor": "Ana Silva",
+                    "instituto": "Instituto de Biologia",
+                    "data_registro": "2026-11-10",
+                    "status": "Em andamento",
+                    "custos": valor,
+                    "csrf_token": token
+                })
+
+                self.assertEqual(resposta.status_code, 200)
+
+                with patentflow.app.app_context():
+                    patente = patentflow.db().execute(
+                        "SELECT * FROM patente WHERE numero_processo = ?",
+                        ("TESTE-INVALIDO",)
+                    ).fetchone()
+
+                    self.assertIsNone(patente)
+
 if __name__ == "__main__":
     unittest.main()
