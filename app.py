@@ -156,7 +156,32 @@ def bad_request(error):return render_template('error.html',message='Não foi pos
 @app.errorhandler(404)
 def not_found(error):return render_template('error.html',message='Página ou registro não encontrado.'),404
 
+def criar_admin_producao():
+    nome = os.environ.get('ADMIN_USER')
+    senha = os.environ.get('ADMIN_PASSWORD')
+
+    if not nome or not senha:
+        return
+
+    if len(senha) < 12:
+        raise ValueError('A senha do administrador deve ter pelo menos 12 caracteres.')
+
+    with app.app_context():
+        conexao = db()
+        usuario = conexao.execute(
+            'SELECT id FROM usuario WHERE nome = ?', (nome,)
+        ).fetchone()
+
+        if usuario is None:
+            conexao.execute(
+                'INSERT INTO usuario(nome, senha_hash) VALUES (?, ?)',
+                (nome, generate_password_hash(senha, method='scrypt'))
+            )
+            conexao.commit()
+
+
 init_db()
+criar_admin_producao()
 
 if __name__ == '__main__':
     app.run(debug=False)
